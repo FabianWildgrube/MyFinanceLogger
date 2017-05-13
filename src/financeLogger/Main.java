@@ -3,10 +3,7 @@ package financeLogger;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class Main extends Application {
 
@@ -15,18 +12,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Model model = new Model();
-        View view = new View();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("financeLogger.fxml"));
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/financeLogger.fxml"));
         Parent root = loader.load();
-        Scene scene = new Scene(root);
-        primaryStage.setScene(scene);
-        primaryStage.setTitle(Params.TITLE);
-        primaryStage.show();
+        View view = new View(primaryStage, root);
+
 
         c1 = loader.<Controller>getController();
         c1.setModel(model);
         c1.setView(view);
+
     }
 
     @Override

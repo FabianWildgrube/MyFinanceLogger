@@ -1,111 +1,95 @@
 package financeLogger;
 
 import java.io.*;
-import java.nio.Buffer;
-import java.nio.charset.Charset;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Observable;
+import java.util.Date;
 
 /**
  * Created by fabianwildgrube on 10/05/2017.
  * Part of MyFinanceLogger
  */
-public class Model{
+public class Model {
 
-    private ArrayList<Double> einnahmen;
-    private ArrayList<Double> ausgaben;
+    private ArrayList<Income> einnahmen;
+    private ArrayList<Expense> ausgaben;
     private File financelog_file;
+    private double balance;
 
-    public Model(){
-        einnahmen = new ArrayList<Double>();
-        ausgaben = new ArrayList<Double>();
+    public Model() {
+        einnahmen = new ArrayList<Income>();
+        ausgaben = new ArrayList<Expense>();
 
-        this.financelog_file = new File(Params.FILENAME);
+        this.financelog_file = new File(Params.FILENAME_INCOMES);
 
-        if (!financelog_file.exists()){
-            try {
-                financelog_file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        if (!financelog_file.exists()) {
+            //Nothing
         } else {
-            BufferedReader reader = null;
-            try {
-                reader = new BufferedReader(new FileReader(financelog_file));
-                String line = null;
-                while ((line = reader.readLine()) != null) {
-                    line = line.trim();
-                    double amount = Double.parseDouble(line);
-                    if(amount > 0.0){
-                        einnahmen.add(amount);
-                    } else {
-                        ausgaben.add(Math.abs(amount));
-                    }
-                }
-            } catch (IOException x) {
-                System.err.format("IOException: %s%n", x);
-            } catch (NumberFormatException e){
-                System.err.format("NumberFormatException: %s%n", e);
-            } finally {
-                if (reader != null){
-                    try {
-                        reader.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
+            readFinanceLog();
         }
+
+//        this.einnahmen.add(new Income(500, Categories.FOOD, "Beschreibung", new Date()));
+//        this.ausgaben.add(new Expense(Math.abs(23), Categories.FOOD, "Beschreibung", new Date()));
+
+        balance = calculateEinnahmen() - calculateAusgaben();
     }
 
 
-    public void addExpense(double value){
-        if (value > 0){
-            this.einnahmen.add(value);
+    public void addExpense(double value) {
+        if (value > 0) {
+            this.einnahmen.add(new Income(value, Categories.FOOD, "Beschreibung", new Date()));
         } else {
-            this.einnahmen.add(Math.abs(value));
+            this.ausgaben.add(new Expense(Math.abs(value), Categories.FOOD, "Beschreibung", new Date()));
         }
+        this.balance = calculateEinnahmen() - calculateAusgaben();
     }
 
-    public double calculateEinnahmen(){
+    public double calculateEinnahmen() {
         double result = 0;
-        for (double x : this.einnahmen){
-            result += x;
+        for (BaseExpense income : this.einnahmen) {
+            result += income.getBetrag();
         }
         return result;
     }
 
-    public double calculateAusgaben(){
+    public double calculateAusgaben() {
         double result = 0;
-        for (double x : this.ausgaben){
-            result += x;
+        for (BaseExpense expense : this.ausgaben) {
+            result += expense.getBetrag();
         }
         return result;
     }
 
-    public void saveFinanceLog(){
-        BufferedWriter writer = null;
+    public double getTotalBalance() {
+        return this.balance;
+    }
+
+    public void saveFinanceLog() {
+
+        FileOutputStream fout = null;
+        ObjectOutputStream oos = null;
+
         try {
-            writer = new BufferedWriter(new FileWriter(financelog_file));
-            String all_entries = "";
-            for (Double x : this.einnahmen){
-                String x_str = Double.toString(x);
-                all_entries += x_str + "\n";
-            }
-            for (Double x : this.ausgaben){
-                String x_str = Double.toString(-x);
-                all_entries += x_str + "\n";
-            }
+            fout = new FileOutputStream(Params.FILENAME_INCOMES);
+            oos = new ObjectOutputStream(fout);
+            oos.writeObject(this.einnahmen);
 
-            writer.write(all_entries, 0, all_entries.length());
+            fout = new FileOutputStream(Params.FILENAME_EXPENSES);
+            oos = new ObjectOutputStream(fout);
+            oos.writeObject(this.ausgaben);
         } catch (IOException x) {
             System.err.format("IOException: %s%n", x);
         } finally {
-            if (writer != null){
+            if (fout != null) {
                 try {
-                    writer.close();
+                    fout.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (oos != null) {
+                try {
+                    oos.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -113,5 +97,33 @@ public class Model{
         }
     }
 
+    private void readFinanceLog() {
+        ObjectInputStream objectinputstream = null;
+        FileInputStream streamIn = null;
+        try {
+            streamIn = new FileInputStream(Params.FILENAME_INCOMES);
+            objectinputstream = new ObjectInputStream(streamIn);
+            this.einnahmen = (ArrayList<Income>) objectinputstream.readObject();
 
+            streamIn = new FileInputStream((Params.FILENAME_EXPENSES));
+            objectinputstream = new ObjectInputStream((streamIn));
+            this.ausgaben = (ArrayList<Expense>) objectinputstream.readObject();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (objectinputstream != null) {
+                try {
+                    objectinputstream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    }
+
+    public Categories[] getCategories() {
+        return Categories.values();
+    }
 }

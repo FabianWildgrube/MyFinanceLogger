@@ -1,5 +1,6 @@
 package financeLogger;
 
+import com.sun.prism.paint.Color;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -23,11 +24,28 @@ import java.util.Observer;
  */
 public class View {
 
-    public View() throws IOException{
+    private Stage primaryStage;
+
+    public View(Stage primaryStage, Parent root) throws IOException{
+        Scene scene = new Scene(root);
+        this.primaryStage = primaryStage;
+        this.primaryStage.setScene(scene);
+        this.primaryStage.setTitle(Params.TITLE);
+        this.primaryStage.show();
     }
 
     public void updateLabel(Label label, double value){
         label.setText(String.valueOf(value) + "€");
+        if (value > 0){
+            label.getStyleClass().add("positive");
+        } else {
+            label.getStyleClass().add("negative");
+        }
+    }
+
+    public void updateScene(Parent root){
+        Scene scene = new Scene(root);
+        this.primaryStage.setScene(scene);
     }
 
     public double readInput(TextField txtfield) throws NullPointerException, NumberFormatException{

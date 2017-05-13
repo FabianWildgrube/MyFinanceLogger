@@ -1,0 +1,145 @@
+.hbox{}
+
+#ein_aus_hbox {
+    -fx-spacing: 0;
+}
+
+.betrag_button {
+    -fx-background-radius: 0;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 7px;
+}
+
+.betrag_button:hover {
+    -fx-cursor: hand;
+}
+
+#neue_einnahme {
+    -fx-background-color: red;
+}
+
+#neue_ausgabe {
+    -fx-background-color: rgb(55, 239, 55);
+}
+
+.text-input {
+    -fx-text-fill: white;
+    -fx-highlight-fill: derive(-fx-control-inner-background,-20%);
+    -fx-highlight-text-fill: -fx-text-inner-color;
+    -fx-prompt-text-fill: derive(-fx-control-inner-background,-30%);
+    -fx-background-color: rgb(240, 240, 240);
+    -fx-border-color: rgb(220, 220, 220);
+    -fx-border-width: 2px;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-cursor: text;
+    -fx-padding: 7;
+}
+
+.text-input > .label {
+
+}
+
+.text-input:focused {
+    -fx-highlight-fill: rgb(50, 50, 50);
+    -fx-highlight-text-fill: rgb(50, 50, 50);
+    -fx-text-fill: rgb(50, 50, 50);
+    -fx-background-color: rgb(230, 230, 230);
+    -fx-border-color: rgb(50, 50, 50);
+    -fx-border-width: 3px;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-background-insets: 0;
+    -fx-prompt-text-fill: transparent;
+}
+
+
+#submit {
+    -fx-background-color: rgb(255, 197, 57);
+    -fx-background-radius: 5px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10px;
+}
+
+#submit:hover {
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(40, 40, 40, 0.1), 10, 0.5, 0, 0);
+}
+
+.titled-pane {
+    -fx-border-style: hidden;
+    -fx-text-fill: white;
+}
+
+.titled-pane:focused > .title{
+    -fx-font-weight: bold;
+}
+
+.titled-pane > .title {
+    -fx-background-color: rgb(200, 200, 200);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 5; /* 2 10 3 10 */
+    -fx-font-weight: normal;
+    -fx-text-alignment: left;
+}
+
+.titled-pane > .title > .arrow-button {
+    -fx-background-color: null;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+    -fx-padding: 0.0em 0.25em 0.0em 0.0em; /* 0 3 0 0 */
+}
+
+.titled-pane > .title > .arrow-button .arrow {
+    -fx-background-color: -fx-mark-color;
+    -fx-background-insets: 0;
+    -fx-padding: 0.25em 0.3125em 0.25em 0.3125em; /* 3 3.75 3 3.75 */
+    -fx-shape: "M 0 0 h 7 l -3.5 4 z";
+}
+
+.titled-pane > *.content {
+    -fx-border-style: hidden;
+    -fx-border-insets: 0;
+    -fx-background-color: red;
+    -fx-insets: 0;
+    -fx-padding: 0;
+}
+
+.list-view {
+    -fx-background-color: rgb(200, 200, 200), white;
+    -fx-background-insets: 0, 1;
+    -fx-insets: 0;
+}
+
+.mylist-view > .scrollbar:vertical {
+    -fx-background-color: red;
+}
+
+.mylist-view .scrollbar:vertical .track {
+    -fx-background-color: transparent;
+}
+
+.mylist-view .scrollbar:vertical .thumb {
+    -fx-background-color: rgb(50, 50, 50);
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.list-cell {
+    -fx-text-fill: rgb(50, 50, 50);
+    -fx-padding: 0 0 0 10;
+    -fx-font-weight: normal;
+}
+
+.list-cell:hover, .list-cell:filled:selected {
+    -fx-background-color: rgb(27, 200, 240);
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.list-cell:selected {
+    -fx-font-weight: bold;
+}
