@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane id="root" prefHeight="559.9999168945287" prefWidth="799.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="financeLogger.Controller">
+  <bottom>
+    <HBox id="bottom" prefHeight="32.0" prefWidth="800.0" styleClass="center">
+      <children>
+        <Label id="bottom_label" text="MyFinanceLogger" />
+      </children>
+    </HBox>
+  </bottom>
+  <center>
+    <VBox id="center_container" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
+      <children>
+        <HBox id="top" alignment="CENTER" prefHeight="330.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox id="ueberblick_box" prefHeight="310.0" prefWidth="241.0" spacing="10.0" styleClass="center, top_box">
+              <children>
+                <HBox id="HBox" alignment="CENTER" spacing="5.0">
+                  <children>
+                    <Label styleClass="heading" text="Überblick">
+                      <font>
+                        <Font name="System Bold" size="20.0" />
+                      </font>
+                    </Label>
+                  </children>
+                </HBox>
+                <HBox id="ein_aus_hbox" alignment="CENTER" spacing="5.0">
+                  <children>
+                    <Label fx:id="lbl_ausgaben" styleClass="font, money_label" text="0.0 €">
+                      <font>
+                        <Font name="System Bold" size="13.0" fx:id="x1" />
+                      </font>
+                      <textFill>
+                        <Color blue="0.000" green="0.240" red="1.000" fx:id="x3" />
+                      </textFill>
+                    </Label>
+                    <Label fx:id="lbl_einnahmen" font="$x1" styleClass="font, money_label" text="0.0 €" textFill="#41cc00" />
+                  </children>
+                </HBox>
+                <VBox id="balance_vbox" alignment="CENTER_LEFT" spacing="0.0" styleClass="center, money_label">
+                  <children>
+                    <Label id="lbl_balance_heading" styleClass="font" text="Guthaben" textFill="BLACK">
+                      <font>
+                        <Font name="System Italic" size="13.0" />
+                      </font>
+                    </Label>
+                    <Label id="lbl_balance" fx:id="lbl_total_balance" alignment="CENTER" font="$x1" styleClass="font" text="0.0 €" textFill="BLACK" />
+                  </children>
+                </VBox>
+                <PieChart id="piechart" fx:id="pieChart" animated="false" disable="false" labelsVisible="false" legendSide="BOTTOM" minWidth="-1.0" prefHeight="245.0" prefWidth="243.0" title="" titleSide="TOP">
+                  <padding>
+                    <Insets />
+                  </padding>
+                </PieChart>
+              </children>
+            </VBox>
+            <LineChart id="LineChart" styleClass="top_box" title="Aktueller Monat">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </LineChart>
+          </children>
+        </HBox>
+        <HBox id="middle" prefHeight="100.0" prefWidth="200.0" styleClass="center" VBox.vgrow="ALWAYS">
+          <children>
+            <Button id="button01" mnemonicParsing="false" onAction="#go_to_betrag" styleClass="main_button" text="">
+              <graphic>
+                <ImageView id="button01_image" fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="main_button_image">
+                  <image>
+                    <Image url="@../images/Icon01-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="main_button" text="">
+              <graphic>
+                <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/Icon02-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="main_button" text="">
+              <graphic>
+                <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/Icon03-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="main_button" text="">
+              <graphic>
+                <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/Icon04-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </center>
+  <stylesheets>
+    <URL value="@../css/financeLogger.css" />
+    <URL value="@../css/home.css" />
+  </stylesheets>
+  <top>
+    <MenuBar id="menu_bar">
+      <menus>
+        <Menu id="menu_datei" mnemonicParsing="false" text="Datei">
+          <items>
+            <MenuItem mnemonicParsing="false" style="" text="Beenden" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Bearbeiten">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Rückgängig" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Hilfe">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Handbuch" />
+            <MenuItem mnemonicParsing="false" text="Über das Programm" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+</BorderPane>

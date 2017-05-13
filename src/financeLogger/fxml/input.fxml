@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane id="root" prefHeight="559.9999168945287" prefWidth="799.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="financeLogger.Controller">
+  <bottom>
+    <HBox id="bottom" prefHeight="32.0" prefWidth="800.0" styleClass="center">
+      <children>
+        <Label id="bottom_label" text="MyFinanceLogger" />
+      </children>
+    </HBox>
+  </bottom>
+  <center>
+    <VBox id="center_container" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
+      <children>
+        <HBox id="top" alignment="CENTER" prefHeight="330.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
+          <children>
+            <VBox id="neuer_betrag_box" prefHeight="310.0" prefWidth="241.0" spacing="10.0" styleClass="center, top_box">
+              <children>
+                <HBox id="HBox" alignment="CENTER" spacing="5.0">
+                  <children>
+                    <Label styleClass="heading" text="Neuer Betrag">
+                      <font>
+                        <Font name="System Bold" size="20.0" />
+                      </font>
+                    </Label>
+                  </children>
+                </HBox>
+                <HBox id="ein_aus_hbox" alignment="CENTER" spacing="5.0" styleClass="hbox">
+                  <children>
+                    <Button id="neue_ausgabe" mnemonicParsing="false" styleClass="betrag_button" text="Einkommen" />
+                    <Button id="neue_einnahme" mnemonicParsing="false" styleClass="betrag_button" text="Ausgabe" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
+                  <children>
+                    <TextField prefWidth="160.0" text="Datum" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
+                  <children>
+                    <TextField prefWidth="160.0" text="Betrag" />
+                  </children>
+                </HBox>
+                <HBox alignment="CENTER" spacing="5.0">
+                  <children>
+                    <TextField prefWidth="160.0" text="Kategorie" />
+                  </children>
+                </HBox>
+                <Button id="submit" mnemonicParsing="false" text="Speichern" />
+              </children>
+            </VBox>
+            <VBox id="VBox" alignment="CENTER" prefHeight="316.0" prefWidth="278.0" spacing="5.0" styleClass="top_box">
+              <children>
+                <Label text="Kategorien:" VBox.vgrow="NEVER" />
+                <Accordion prefHeight="316.0">
+                  <expandedPane>
+                    <TitledPane fx:id="x2" animated="false" text="untitled">
+                      <content>
+                        <ListView prefHeight="200.0" prefWidth="200.0" styleClass="mylist-view" />
+                      </content>
+                    </TitledPane>
+                  </expandedPane>
+                  <panes>
+                    <fx:reference source="x2" />
+                    <TitledPane fx:id="x1" animated="false" text="untitled">
+                      <content>
+                        <ListView prefHeight="200.0" prefWidth="200.0" />
+                      </content>
+                    </TitledPane>
+                  </panes>
+                </Accordion>
+              </children>
+            </VBox>
+          </children>
+        </HBox>
+        <HBox id="middle" prefHeight="100.0" prefWidth="200.0" styleClass="center" VBox.vgrow="ALWAYS">
+          <children>
+            <Button id="button01" mnemonicParsing="false" styleClass="main_button" text="">
+              <graphic>
+                <ImageView id="button01_image" fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="main_button_image">
+                  <image>
+                    <Image url="@../images/Icon00-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="main_button" text="">
+              <graphic>
+                <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/Icon02-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="main_button" text="">
+              <graphic>
+                <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/Icon03-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+            <Button mnemonicParsing="false" styleClass="main_button" text="">
+              <graphic>
+                <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/Icon04-8.png" />
+                  </image>
+                </ImageView>
+              </graphic>
+            </Button>
+          </children>
+        </HBox>
+      </children>
+    </VBox>
+  </center>
+  <stylesheets>
+    <URL value="@../css/financeLogger.css" />
+    <URL value="@../css/input.css" />
+  </stylesheets>
+  <top>
+    <MenuBar id="menu_bar">
+      <menus>
+        <Menu id="menu_datei" mnemonicParsing="false" text="Datei">
+          <items>
+            <MenuItem mnemonicParsing="false" style="" text="Beenden" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Bearbeiten">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Rückgängig" />
+            <MenuItem mnemonicParsing="false" text="Style ändern" />
+          </items>
+        </Menu>
+        <Menu mnemonicParsing="false" text="Hilfe">
+          <items>
+            <MenuItem mnemonicParsing="false" text="Handbuch" />
+            <MenuItem mnemonicParsing="false" text="Über das Programm" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+  </top>
+</BorderPane>
