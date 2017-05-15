@@ -1,0 +1,30 @@
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(200, 200, 200);
+    -fx-border-radius: 3;
+}
+
+.split-pane:focused {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-background-color: transparent;
+}
+
+#chartHolderPane {
+    -fx-padding: 5;
+}
+
+.default-color1.chart-pie { -fx-pie-color: -fx-finlog-negative-red-full; }
+
+.default-color0.chart-pie { -fx-pie-color: -fx-finlog-positive-green-full; }
+
+.default-color0.chart-bar { -fx-bar-fill: -fx-finlog-negative-red-full; }

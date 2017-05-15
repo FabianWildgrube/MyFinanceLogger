@@ -5,7 +5,7 @@
 }
 
 #ein_aus_hbox{
-    -fx-spacing: 30px;
+    -fx-spacing: 20px;
 }
 
 .money_label {
@@ -34,9 +34,9 @@
     -fx-background-color: transparent;
 }
 
-.default-color1.chart-pie { -fx-pie-color: rgb(255, 0, 0); }
+.default-color1.chart-pie { -fx-pie-color: -fx-finlog-negative-red-full; }
 
-.default-color0.chart-pie { -fx-pie-color: rgb(55, 239, 55); }
+.default-color0.chart-pie { -fx-pie-color: -fx-finlog-positive-green-full; }
 
 #LineChart {
     -fx-padding: 10px;

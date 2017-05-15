@@ -8,10 +8,10 @@ import java.util.Date;
  */
 public class Expense extends BaseExpense {
     public Expense(double betrag, Categories categorie, String beschreibung, Date datum) {
-        super(betrag, categorie, beschreibung, datum);
+        super(-Math.abs(betrag), categorie, beschreibung, datum);
     }
 
     public double getBetrag() {
-        return (Math.abs(super.getBetrag()));
+        return (super.getBetrag());
     }
 }

@@ -7,12 +7,17 @@
 .betrag_button {
     -fx-background-radius: 0;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
+    -fx-font-weight: normal;
     -fx-padding: 7px;
 }
 
 .betrag_button:hover {
     -fx-cursor: hand;
+}
+
+.betrag_button:focused, betrag_button:selected {
+    -fx-padding: 12 10 12 10;
+    -fx-font-weight: bold;
 }
 
 #neue_einnahme {
@@ -69,7 +74,9 @@
 }
 
 .titled-pane {
-    -fx-border-style: hidden;
+    -fx-border-style: solid;
+    -fx-border-width: 1px;
+    -fx-border-color: rgb(200, 200, 200);
     -fx-text-fill: white;
 }
 
@@ -106,40 +113,4 @@
     -fx-background-color: red;
     -fx-insets: 0;
     -fx-padding: 0;
-}
-
-.list-view {
-    -fx-background-color: rgb(200, 200, 200), white;
-    -fx-background-insets: 0, 1;
-    -fx-insets: 0;
-}
-
-.mylist-view > .scrollbar:vertical {
-    -fx-background-color: red;
-}
-
-.mylist-view .scrollbar:vertical .track {
-    -fx-background-color: transparent;
-}
-
-.mylist-view .scrollbar:vertical .thumb {
-    -fx-background-color: rgb(50, 50, 50);
-    -fx-background-insets: 0;
-    -fx-background-radius: 0;
-}
-
-.list-cell {
-    -fx-text-fill: rgb(50, 50, 50);
-    -fx-padding: 0 0 0 10;
-    -fx-font-weight: normal;
-}
-
-.list-cell:hover, .list-cell:filled:selected {
-    -fx-background-color: rgb(27, 200, 240);
-    -fx-text-fill: white;
-    -fx-cursor: hand;
-}
-
-.list-cell:selected {
-    -fx-font-weight: bold;
 }

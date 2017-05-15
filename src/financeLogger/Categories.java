@@ -6,15 +6,28 @@ package financeLogger;
  */
 public enum Categories {
 
-    TRANSPORTATION ("Transportation"),
-    HOUSEHOLD ("Household"),
-    FOOD ("Food"),
-    ENTERTAINMENT ("Entertainment"),
-    HOBBIES ("Hobbies");
+    TRANSPORTATION ("Transportmittel", "orange"),
+    HOUSEHOLD ("Haushalt", "green"),
+    FOOD ("Essen", "red"),
+    ENTERTAINMENT ("Freizeit", "navy"),
+    HOBBIES ("Hobbies", "purple");
 
     private String name;
+    private String color;
 
-    private Categories(String name){
+    private Categories(String name, String color){
         this.name = name;
+        this.color = color;
     }
+
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public String toString(){
+        return this.name;
+    }
+
+
 }

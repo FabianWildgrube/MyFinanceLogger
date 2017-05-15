@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane id="root" prefHeight="559.9999168945287" prefWidth="799.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="financeLogger.Controller">
+<BorderPane id="root" prefHeight="652.9999168945287" prefWidth="799.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="financeLogger.StatsController">
   <bottom>
     <HBox id="bottom" prefHeight="32.0" prefWidth="800.0" styleClass="center">
       <children>
@@ -25,34 +25,23 @@
   <center>
     <VBox id="center_container" alignment="CENTER" prefHeight="-1.0" prefWidth="-1.0" BorderPane.alignment="CENTER">
       <children>
-        <HBox id="top" alignment="CENTER" prefHeight="330.0" prefWidth="760.0" styleClass="top_box" VBox.vgrow="ALWAYS">
+        <HBox id="top" alignment="CENTER" prefHeight="560.0" prefWidth="750.0" styleClass="top_box" VBox.vgrow="ALWAYS">
           <children>
-            <SplitPane dividerPositions="0.27884615384615385" focusTraversable="true" prefHeight="316.0" prefWidth="827.0">
+            <SplitPane dividerPositions="0.39285714285714285" focusTraversable="true" prefHeight="316.0" prefWidth="827.0">
               <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="387.0" prefWidth="191.0">
                   <children>
-                    <ListView prefHeight="314.0" prefWidth="210.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                    <ListView fx:id="chartSelectionList" prefHeight="314.0" prefWidth="210.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                   </children>
                 </AnchorPane>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
-                  <children>
-                    <LineChart id="LineChart" prefHeight="314.0" prefWidth="532.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                      <xAxis>
-                        <CategoryAxis side="BOTTOM" />
-                      </xAxis>
-                      <yAxis>
-                        <NumberAxis side="LEFT" />
-                      </yAxis>
-                    </LineChart>
-                  </children>
-                </AnchorPane>
+                <HBox fx:id="chartHolderPane" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" />
               </items>
             </SplitPane>
           </children>
         </HBox>
         <HBox id="middle" prefHeight="100.0" prefWidth="200.0" styleClass="center" VBox.vgrow="ALWAYS">
           <children>
-            <Button id="button01" mnemonicParsing="false" styleClass="main_button" text="">
+            <Button id="button01" mnemonicParsing="false" onAction="#go_to_home" styleClass="main_button" text="">
               <graphic>
                 <ImageView id="button01_image" fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="main_button_image">
                   <image>
@@ -60,8 +49,11 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Home Screen" />
+              </tooltip>
             </Button>
-            <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="main_button" text="">
+            <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#go_to_input" styleClass="main_button" text="">
               <graphic>
                 <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -69,6 +61,9 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Neuer Betrag" />
+              </tooltip>
             </Button>
             <Button mnemonicParsing="false" styleClass="main_button" text="">
               <graphic>
@@ -78,6 +73,9 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Alle Beträge" />
+              </tooltip>
             </Button>
             <Button mnemonicParsing="false" styleClass="main_button" text="">
               <graphic>
@@ -87,6 +85,9 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Einstellungen" />
+              </tooltip>
             </Button>
           </children>
         </HBox>
@@ -95,7 +96,7 @@
   </center>
   <stylesheets>
     <URL value="@../css/financeLogger.css" />
-    <URL value="@../css/input.css" />
+    <URL value="@../css/stats.css" />
   </stylesheets>
   <top>
     <MenuBar id="menu_bar">

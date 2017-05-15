@@ -14,7 +14,7 @@
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane id="root" prefHeight="559.9999168945287" prefWidth="799.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="financeLogger.Controller">
+<BorderPane id="root" prefHeight="559.9999168945287" prefWidth="799.0000999999975" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="financeLogger.InputController">
   <bottom>
     <HBox id="bottom" prefHeight="32.0" prefWidth="800.0" styleClass="center">
       <children>
@@ -27,7 +27,7 @@
       <children>
         <HBox id="top" alignment="CENTER" prefHeight="330.0" prefWidth="760.0" VBox.vgrow="ALWAYS">
           <children>
-            <VBox id="neuer_betrag_box" prefHeight="310.0" prefWidth="241.0" spacing="10.0" styleClass="center, top_box">
+            <VBox fx:id="neuer_betrag_box" prefHeight="310.0" prefWidth="241.0" spacing="10.0" styleClass="center, top_box, positive_bg">
               <children>
                 <HBox id="HBox" alignment="CENTER" spacing="5.0">
                   <children>
@@ -40,55 +40,39 @@
                 </HBox>
                 <HBox id="ein_aus_hbox" alignment="CENTER" spacing="5.0" styleClass="hbox">
                   <children>
-                    <Button id="neue_ausgabe" mnemonicParsing="false" styleClass="betrag_button" text="Einkommen" />
-                    <Button id="neue_einnahme" mnemonicParsing="false" styleClass="betrag_button" text="Ausgabe" />
+                    <Button id="neue_ausgabe" mnemonicParsing="false" onAction="#setInput_positive_flag_true" styleClass="betrag_button" text="Einkommen" />
+                    <Button id="neue_einnahme" mnemonicParsing="false" onAction="#setInput_positive_flag_false" styleClass="betrag_button" text="Ausgabe" />
                   </children>
                 </HBox>
                 <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
                   <children>
-                    <TextField prefWidth="160.0" text="Datum" />
+                    <TextField fx:id="datum_in" onAction="#clearInput" prefWidth="160.0" text="Datum" />
                   </children>
                 </HBox>
                 <HBox alignment="CENTER" spacing="5.0" VBox.vgrow="NEVER">
                   <children>
-                    <TextField prefWidth="160.0" text="Betrag" />
+                    <TextField fx:id="betrag_in" onMouseClicked="#clearInput" prefWidth="160.0" text="Betrag" />
                   </children>
                 </HBox>
                 <HBox alignment="CENTER" spacing="5.0">
                   <children>
-                    <TextField prefWidth="160.0" text="Kategorie" />
+                    <TextField fx:id="kategorie_in" onMouseClicked="#clearInput" prefWidth="160.0" text="Kategorie" />
                   </children>
                 </HBox>
-                <Button id="submit" mnemonicParsing="false" text="Speichern" />
+                <Button id="submit" mnemonicParsing="false" onAction="#saveInput" text="Speichern" />
               </children>
             </VBox>
             <VBox id="VBox" alignment="CENTER" prefHeight="316.0" prefWidth="278.0" spacing="5.0" styleClass="top_box">
               <children>
                 <Label text="Kategorien:" VBox.vgrow="NEVER" />
-                <Accordion prefHeight="316.0">
-                  <expandedPane>
-                    <TitledPane fx:id="x2" animated="false" text="untitled">
-                      <content>
-                        <ListView prefHeight="200.0" prefWidth="200.0" styleClass="mylist-view" />
-                      </content>
-                    </TitledPane>
-                  </expandedPane>
-                  <panes>
-                    <fx:reference source="x2" />
-                    <TitledPane fx:id="x1" animated="false" text="untitled">
-                      <content>
-                        <ListView prefHeight="200.0" prefWidth="200.0" />
-                      </content>
-                    </TitledPane>
-                  </panes>
-                </Accordion>
+                <Accordion fx:id="categories_accordion" expandedPane="$null" prefHeight="316.0" />
               </children>
             </VBox>
           </children>
         </HBox>
         <HBox id="middle" prefHeight="100.0" prefWidth="200.0" styleClass="center" VBox.vgrow="ALWAYS">
           <children>
-            <Button id="button01" mnemonicParsing="false" styleClass="main_button" text="">
+            <Button id="button01" mnemonicParsing="false" onAction="#go_to_home" styleClass="main_button" text="">
               <graphic>
                 <ImageView id="button01_image" fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true" styleClass="main_button_image">
                   <image>
@@ -96,8 +80,11 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Home Screen" />
+              </tooltip>
             </Button>
-            <Button minWidth="-Infinity" mnemonicParsing="false" styleClass="main_button" text="">
+            <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#go_to_stats" styleClass="main_button" text="">
               <graphic>
                 <ImageView fitHeight="110.0" fitWidth="110.0" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                   <image>
@@ -105,6 +92,9 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Statistiken" />
+              </tooltip>
             </Button>
             <Button mnemonicParsing="false" styleClass="main_button" text="">
               <graphic>
@@ -114,6 +104,9 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Alle Beträge" />
+              </tooltip>
             </Button>
             <Button mnemonicParsing="false" styleClass="main_button" text="">
               <graphic>
@@ -123,6 +116,9 @@
                   </image>
                 </ImageView>
               </graphic>
+              <tooltip>
+                <Tooltip text="Einstellungen" />
+              </tooltip>
             </Button>
           </children>
         </HBox>

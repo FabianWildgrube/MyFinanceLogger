@@ -1,3 +1,22 @@
+/* Color Palette */
+.root {
+    -fx-finlog-orange: rgb(255, 197, 57);
+    -fx-finlog-verydarkgray: rgb(50, 50, 50);
+    -fx-finlog-darkgray: rgb(100, 100, 100);
+    -fx-finlog-lightgray: rgb(200, 200, 200);
+    -fx-finlog-verylightgray: rgb(230, 230, 230);
+
+    -fx-finlog-positive-green-full: rgb(55, 239, 55);
+    -fx-finlog-positive-green-light: rgba(80, 255, 40, 0.3);
+
+    -fx-finlog-negative-red-full: rgb(255, 0, 0);
+    -fx-finlog-negative-red-light: rgba(255, 0, 0, 0.3);
+
+
+
+}
+
+
 /* Main Style Classes */
 .center{
     -fx-alignment: center;
@@ -15,7 +34,7 @@
 
 /* Main Navigation Buttons */
 .main_button {
-    -fx-background-color: rgb(255, 197, 57);
+    -fx-background-color: -fx-finlog-orange;
     -fx-background-radius: 5px;
 }
 
@@ -24,13 +43,15 @@
     -fx-effect: dropshadow(gaussian, rgba(40, 40, 40, 0.1), 10, 0.5, 0, 0);
 }
 
-.main_button_image {
-    -fx-width: 160px;
+.tooltip {
+    -fx-background-color: rgba(120, 120, 120, 0.5);
+    -fx-background-radius: 3;
+    -fx-text-fill: white;
 }
 
 /* Menu bar */
 #menu_bar {
-    -fx-background-color: rgb(100, 100, 100);
+    -fx-background-color: -fx-finlog-darkgray;
     -fx-font-size: 14px;
     -fx-padding: 0px;
 }
@@ -41,7 +62,7 @@
 }
 
 .menu-bar > .container > .menu-button:hover {
-    -fx-background-color: rgb(200, 200, 200);
+    -fx-background-color: -fx-finlog-lightgray;
     -fx-cursor: hand;
 }
 
@@ -61,12 +82,12 @@
 }
 
 .menu-item:focused {
-    -fx-background-color:rgb(200, 200, 200);
+    -fx-background-color:-fx-finlog-lightgray;
     -fx-cursor: hand;
 }
 
 .menu-button > * > .context-menu {
-    -fx-color: rgb(200, 200, 200);
+    -fx-color: -fx-finlog-lightgray;
 }
 
 /* Main Backgroundcolor */
@@ -86,7 +107,7 @@
 }
 
 .top_box {
-    -fx-background-color: rgb(255,255,255);
+    -fx-background-color: white;
     -fx-background-radius: 5px;
     -fx-padding: 10px;
 }
@@ -97,25 +118,69 @@
 }
 
 #bottom_label {
-    -fx-text-fill: rgb(255, 255, 255);
+    -fx-text-fill: white;
 }
 
 /* Positive amounts will be displayed green */
 .positive_text {
-    -fx-text-fill: rgb(55, 239, 55);
+    -fx-text-fill: -fx-finlog-positive-green-full;
 }
 
 .positive_bg {
-    -fx-background-color: rgba(80, 255, 40, 0.3);
+    -fx-background-color: -fx-finlog-positive-green-light;
 }
 
 /* Negativ amounts will be displayed green */
 .negative_text {
-    -fx-text-fill: red;
+    -fx-text-fill: -fx-finlog-negative-red-full;
 }
 
 .negative_bg {
-    -fx-background-color: rgba(255, 0, 0, 0.3);
+    -fx-background-color: -fx-finlog-negative-red-light;
+}
+
+/* Graphs */
+.chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+
+/* Lists */
+.list-view {
+    -fx-background-color: -fx-finlog-lightgray, white;
+    -fx-background-insets: 0, 1;
+    -fx-insets: 0;
+}
+
+.scrollbar:vertical {
+    -fx-background-color: red;
+}
+
+.scrollbar:vertical .track {
+    -fx-background-color: red;
+}
+
+.scrollbar:vertical .thumb {
+    -fx-background-color: -fx-finlog-verydarkgray;
+    -fx-background-insets: 0;
+    -fx-background-radius: 0;
+}
+
+.list-cell {
+    -fx-text-fill: -fx-finlog-verydarkgray;
+    -fx-padding: 5 0 5 10;
+    -fx-font-weight: normal;
+    -fx-font-size: 14;
+}
+
+.list-cell:hover, .list-cell:filled:selected {
+    -fx-background-color: -fx-finlog-orange;
+    -fx-text-fill: white;
+    -fx-cursor: hand;
+}
+
+.list-cell:selected {
+    -fx-font-weight: bold;
 }
 
 
